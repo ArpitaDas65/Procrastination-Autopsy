@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Procrastination Autopsy — understand why you procrastinate and discover your behavioral patterns.">
+<title>Procrastination Autopsy</title>
+<style>
+:root{--bg:#08090d;--card:#11131b;--line:#252836;--text:#f8fafc;--muted:#94a3b8;--a:#a78bfa;--b:#f0abfc;--red:#fb7185;--green:#86efac;--ease:cubic-bezier(.22,1,.36,1)}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{background:radial-gradient(circle at 15% 5%,#25153f 0,transparent 30%),radial-gradient(circle at 90% 20%,#26172e 0,transparent 25%),var(--bg);color:var(--text);font:16px/1.6 Inter,system-ui,sans-serif;overflow-x:hidden}button,input,select{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}.container{width:min(1140px,92%);margin:auto}.muted{color:var(--muted)}[hidden]{display:none!important}
+.nav{position:fixed;top:0;left:0;right:0;z-index:20;padding:15px 0;border-bottom:1px solid transparent;transition:.3s var(--ease)}.nav.scrolled{background:#08090dcc;backdrop-filter:blur(18px);border-color:var(--line);padding:9px 0}.navin{height:48px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{font-weight:800;font-size:13px;letter-spacing:.06em}.brand i{font-style:normal;color:var(--muted);font-weight:400}.links{display:flex;gap:28px}.links a{font-size:13px;color:var(--muted)}.links a:hover,.links a.active{color:#fff}.actions{display:flex;gap:10px}.hamb{display:none;background:transparent;border:1px solid var(--line);border-radius:12px;width:44px;height:44px}.hamb span{display:block;width:18px;height:2px;background:#fff;margin:4px auto}
+.mobile{position:fixed;inset:0;z-index:19;background:#08090df7;backdrop-filter:blur(20px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:25px}.mobile a{font-size:24px;font-weight:750}
+.btn{border:1px solid var(--line);border-radius:999px;padding:11px 20px;min-height:44px;background:transparent;color:#fff;font-weight:700;transition:.25s var(--ease)}.btn:hover{transform:translateY(-2px);border-color:#454958}.primary{border:0;background:linear-gradient(135deg,var(--a),var(--b));color:#100b18;box-shadow:0 12px 32px #7c3aed35}.small{padding:8px 14px;min-height:40px;font-size:12px}
+.hero{padding:155px 0 95px;min-height:700px}.heroGrid{display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:65px}.eyebrow{font-size:10px;color:var(--a);font-weight:800;letter-spacing:.16em;text-transform:uppercase}.hero h1{font-size:clamp(46px,6vw,76px);line-height:1.02;letter-spacing:-.055em;margin:16px 0 22px}.grad{background:linear-gradient(120deg,var(--a),var(--b));background-clip:text;-webkit-background-clip:text;color:transparent}.hero p.sub{color:var(--muted);font-size:18px;max-width:610px}.ctas{display:flex;gap:12px;flex-wrap:wrap;margin:30px 0}.ind{display:flex;gap:38px;flex-wrap:wrap}.ind strong{display:block;color:#ddd6fe;font-size:19px}.ind span{font-size:10px;color:#657080;text-transform:uppercase;letter-spacing:.08em}
+.scanner{width:min(420px,90vw);aspect-ratio:1;margin:auto;display:grid;place-items:center;position:relative}.ring{position:absolute;border:1px solid #a78bfa33;border-radius:50%;animation:spin 35s linear infinite}.r1{inset:8%}.r2{inset:24%;border-style:dashed;animation-duration:50s;animation-direction:reverse}.r3{inset:40%;border-color:#f0abfc55;animation-duration:22s}.core{width:92px;height:92px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle,#fff 0 4%,#d8b4fe 8% 18%,#7c3aed 48%,transparent 72%);box-shadow:0 0 90px #a78bfa88}.dot{position:absolute;width:7px;height:7px;border-radius:50%;background:#c4b5fd;box-shadow:0 0 20px #a78bfa;animation:pulse 2.5s infinite}.d1{top:13%;right:25%}.d2{top:34%;left:14%;animation-delay:.5s}.d3{bottom:17%;left:28%;animation-delay:1s}.d4{bottom:28%;right:17%;animation-delay:1.5s}@keyframes spin{to{transform:rotate(360deg)}}@keyframes pulse{50%{transform:scale(2);opacity:.5}}
+.section{padding:85px 0}.head{margin-bottom:25px}.head h2{font-size:clamp(30px,4vw,48px);line-height:1.1;letter-spacing:-.04em;margin-top:7px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}.card,.stat,.result,.history,.empty{background:linear-gradient(145deg,#ffffff0d,#ffffff04);border:1px solid var(--line);border-radius:22px;box-shadow:0 25px 70px #0003}.card{padding:27px}.card h3{margin:12px 0 5px}.card p{color:var(--muted);font-size:14px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.stat{padding:23px}.stat .value{font-size:28px;font-weight:850}.stat .label{font-size:10px;color:#657080;text-transform:uppercase;letter-spacing:.08em}.empty{text-align:center;padding:55px 20px}.empty .icon{font-size:35px;color:var(--a)}.empty h3{font-size:24px;margin:8px}.empty p{color:var(--muted);margin-bottom:20px}
+.result{padding:30px}.resultTop{display:flex;justify-content:space-between;gap:15px}.resultTitle{font-size:34px;font-weight:850}.badge{border:1px solid var(--line);border-radius:99px;padding:7px 11px;font-size:11px;color:#ddd6fe;white-space:nowrap}.narrative{color:var(--muted);margin:16px 0 24px}.bar{margin:14px 0}.barLabel{display:flex;justify-content:space-between;color:var(--muted);font-size:12px;margin-bottom:6px}.track{height:8px;background:#ffffff0d;border-radius:99px;overflow:hidden}.fill{height:100%;width:0;background:linear-gradient(90deg,#7c3aed,#f0abfc);border-radius:inherit;transition:width 1s var(--ease)}.fill.green{background:linear-gradient(90deg,#65a30d,#86efac)}.move{margin-top:25px;padding:20px;background:#a78bfa0d;border:1px solid #a78bfa22;border-radius:17px}.move small{color:var(--a);font-weight:800;letter-spacing:.12em}.move .do{font-size:18px;font-weight:750;margin:6px 0 15px}
+.dna{display:grid;grid-template-columns:1fr 330px;gap:18px}.dnaCard{padding:28px}.dnaRow{margin-bottom:19px}.dnaLabel{display:flex;justify-content:space-between;font-size:13px;margin-bottom:7px}.dnaLabel span:last-child{color:#d8b4fe}.dnaFill{height:8px;width:0;background:linear-gradient(90deg,#7c3aed,#f0abfc);border-radius:99px;transition:width 1s var(--ease)}.radial{display:grid;place-items:center;min-height:290px}.radial svg{width:260px;max-width:100%}.insight{font-size:clamp(23px,3vw,34px);font-weight:750;letter-spacing:-.03em;padding:30px;border:1px solid #a78bfa33;border-radius:22px;background:#a78bfa0b}.accent{color:#d8b4fe}.four{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.heat{display:grid;grid-auto-flow:column;grid-template-rows:repeat(7,14px);gap:5px;overflow:auto}.cell{width:14px;height:14px;border-radius:4px;background:#ffffff0d}.cell[data-l="1"]{background:#a78bfa4d}.cell[data-l="2"]{background:#a78bfa99}.cell[data-l="3"]{background:#a78bfa}.trigger{display:flex;flex-direction:column;align-items:center;padding:30px}.node{min-width:210px;text-align:center;padding:12px 22px;border:1px solid #ffffff20;background:#ffffff06;border-radius:99px;font-weight:700}.node.em{border-color:#a78bfa88;box-shadow:0 0 30px #7c3aed22}.node.danger{border-color:#fb718566}.arrow{color:#657080;padding:7px}.historyGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.history{padding:20px;transition:.25s var(--ease)}.history:hover{transform:translateY(-3px);border-color:#a78bfa55}.date{font-size:10px;color:var(--a);font-weight:800;letter-spacing:.12em}.task{font-size:18px;font-weight:750;margin:7px 0}.meta{font-size:12px;color:var(--muted)}.controls{display:flex;gap:10px;margin-bottom:17px}.controls input,.controls select{min-height:44px;background:#0e1017;color:#fff;border:1px solid var(--line);border-radius:12px;padding:0 13px}.controls input{flex:1}.delete{margin-top:13px;border:0;background:none;color:var(--red);font-size:12px}.milestones{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);overflow:hidden}.mile{background:#0d0f16;padding:20px;opacity:.4}.mile.on{opacity:1}.mile b{display:block;font-size:11px;letter-spacing:.08em;margin:7px 0}.mile p{color:var(--muted);font-size:12px}.footer{border-top:1px solid var(--line);padding:45px 0 30px}.footerRow{display:flex;justify-content:space-between;gap:20px}.footer small{color:#657080}
+.overlay{position:fixed;inset:0;z-index:100;background:#000b;backdrop-filter:blur(8px);display:grid;place-items:center;padding:18px}.modal{width:min(700px,100%);max-height:88vh;overflow:auto;background:#0d0f16;border:1px solid #ffffff20;border-radius:25px;position:relative;box-shadow:0 30px 100px #000b}.close{position:absolute;right:17px;top:14px;border:1px solid var(--line);border-radius:50%;background:transparent;color:#fff;width:38px;height:38px}.progress{height:3px;background:#ffffff0d}.progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,#7c3aed,#f0abfc);transition:.4s var(--ease)}.modalBody{padding:44px 35px 30px}.stepTitle{font-size:clamp(28px,4vw,42px);line-height:1.1;margin:7px 0}.stepHint{color:var(--muted);font-size:14px}.stepInput{width:100%;padding:15px;margin:22px 0 4px;background:#ffffff06;border:1px solid var(--line);border-radius:14px;color:#fff;outline:0}.stepInput:focus{border-color:var(--a);box-shadow:0 0 0 4px #a78bfa15}.options{display:grid;gap:9px;margin:22px 0}.option,.reason{padding:14px 15px;border:1px solid var(--line);border-radius:14px;background:#ffffff05;color:#fff;text-align:left;transition:.2s}.option:hover,.reason:hover{transform:translateY(-2px);background:#ffffff0b}.option.selected,.reason.selected{border-color:#a78bfa99;background:#a78bfa14}.reasonGrid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:20px 0}.reason{display:grid;grid-template-columns:32px 1fr}.reason small{grid-column:2;color:var(--muted)}.actions{display:flex;justify-content:space-between;gap:10px;margin-top:22px}.back{border:0;background:none;color:var(--muted)}.analyze{text-align:center;padding:40px 0}.analyze .loading{height:8px;max-width:430px;margin:25px auto 10px;background:#ffffff0d;border-radius:99px;overflow:hidden}.analyze .loading i{display:block;width:0;height:100%;background:linear-gradient(90deg,#7c3aed,#f0abfc);transition:1.5s}.complete{text-align:center;padding:35px 0}.complete h2{font-size:40px}.complete p{color:var(--muted);margin:6px 0 20px}.toast{position:fixed;bottom:22px;left:50%;z-index:200;transform:translate(-50%,20px);opacity:0;background:#171a24;border:1px solid #ffffff20;padding:10px 16px;border-radius:99px;font-size:13px;transition:.3s}.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:900px){.heroGrid,.dna{grid-template-columns:1fr}.scanner{order:-1;max-width:330px}.links,.actions>.small{display:none}.hamb{display:block}.grid3,.historyGrid{grid-template-columns:1fr 1fr}.four,.milestones{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.hero{padding-top:125px}.hero h1{font-size:45px}.hero p.sub{font-size:16px}.ctas{flex-direction:column}.ctas .btn{width:100%}.stats,.grid3,.historyGrid,.four,.milestones,.reasonGrid{grid-template-columns:1fr}.resultTop{flex-direction:column}.controls{flex-direction:column}.modalBody{padding:40px 20px 25px}.node{min-width:180px}.section{padding:65px 0}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav"><div class="container navin">
+<a class="brand" href="#top">◉ PROCRASTINATION<i> AUTOPSY</i></a>
+<nav class="links"><a href="#dashboard" data-nav="dashboard">Dashboard</a><a href="#dna" data-nav="dna">Patterns</a><a href="#thirty" data-nav="thirty">History</a><a href="#weekly" data-nav="weekly">Insights</a></nav>
+<div class="actions"><button class="btn primary small" id="newBtn">+ New Autopsy</button><button class="hamb" id="hamb" aria-expanded="false" aria-label="Open menu"><span></span><span></span><span></span></button></div>
+</div></header>
+<div class="mobile" id="mobile" hidden><a href="#dashboard">Dashboard</a><a href="#dna">Patterns</a><a href="#thirty">History</a><a href="#weekly">Insights</a><button class="btn primary" id="mobileNew">+ New Autopsy</button></div>
+
+<main>
+<section class="hero" id="top"><div class="container heroGrid"><div><p class="eyebrow">A behavioral self-reflection tool</p><h1>You're not lazy.<br>You have a <span class="grad">pattern</span>.</h1><p class="sub">Procrastination Autopsy helps you understand what actually stops you from starting — not how much time you lost.</p><div class="ctas"><button class="btn primary" id="heroBtn">Investigate My Procrastination →</button><button class="btn" id="howBtn">See How It Works</button></div><div class="ind"><div><strong>30 sec</strong><span>Quick reflection</span></div><div><strong>9 patterns</strong><span>Tracked</span></div><div><strong>100%</strong><span>Private</span></div></div></div><div class="scanner"><div class="ring r1"></div><div class="ring r2"></div><div class="ring r3"></div><div class="core">◉</div><i class="dot d1"></i><i class="dot d2"></i><i class="dot d3"></i><i class="dot d4"></i></div></div></section>
+
+<section class="section" id="how"><div class="container"><div class="head"><p class="eyebrow">How it works</p><h2>Investigate. Understand. Change.</h2></div><div class="grid3"><article class="card"><b class="eyebrow">01</b><h3>Tell us what stalled</h3><p>Name the task, avoidance time and what you did instead. No judgment.</p></article><article class="card"><b class="eyebrow">02</b><h3>Find the real reason</h3><p>Choose the blockers that fit and answer adaptive follow-up questions.</p></article><article class="card"><b class="eyebrow">03</b><h3>See your pattern</h3><p>Every autopsy builds a private behavioral profile in your browser.</p></article></div></div></section>
+
+<section class="section" id="dashboard"><div class="container"><div class="head"><p class="eyebrow">Dashboard</p><h2>Today's overview</h2></div><div class="stats" id="stats"></div></div></section>
+<section class="section" id="empty"><div class="container"><div class="empty"><div class="icon">◉</div><h3>Your autopsy table is empty.</h3><p>That's actually a good thing.<br>Start investigating your first procrastination pattern.</p><button class="btn primary" id="emptyBtn">Perform First Autopsy →</button></div></div></section>
+
+<section class="section" id="latest" hidden><div class="container"><div class="head"><p class="eyebrow">Today's autopsy</p><h2>Primary blocker</h2></div><div class="result" id="result"></div></div></section>
+<section class="section" id="dna" hidden><div class="container"><div class="head"><p class="eyebrow">Patterns</p><h2>Your Procrastination DNA</h2><p class="muted">Your first autopsy starts the profile. More entries make the percentages more reliable.</p></div><div class="dna"><div class="card dnaCard" id="dnaBars"></div><div class="card radial" id="radial"></div></div></div></section>
+<section class="section" id="insight" hidden><div class="container"><div class="insight" id="insightBox"></div></div></section>
+<section class="section" id="thirty" hidden><div class="container"><div class="head"><p class="eyebrow">30-Day Autopsy</p><h2>What has been happening lately?</h2></div><div class="four" id="thirtyStats"></div><div class="card" style="margin-top:16px"><h3 style="margin-bottom:16px">Activity</h3><div class="heat" id="heat"></div></div></div></section>
+<section class="section" id="trigger" hidden><div class="container"><div class="head"><p class="eyebrow">Trigger Map</p><h2>When your brain says “later”</h2></div><div class="card trigger" id="triggerBox"></div></div></section>
+<section class="section" id="timeline" hidden><div class="container"><div class="head"><p class="eyebrow">Pattern Timeline</p><h2>Your recent loop</h2></div><div class="historyGrid" id="timelineGrid"></div><div class="card" id="timelineDetail" hidden style="margin-top:15px"></div></div></section>
+<section class="section" id="weekly" hidden><div class="container"><div class="card" id="weeklyBox"></div></div></section>
+<section class="section" id="milestoneSection" hidden><div class="container"><div class="head"><p class="eyebrow">Milestones</p><h2>Quiet progress</h2></div><div class="milestones" id="milestones"></div></div></section>
+<section class="section" id="wow" hidden><div class="container"><div class="insight" style="text-align:center"><p class="eyebrow">We found your pattern.</p><p id="wowLead" style="margin:18px auto;max-width:800px"></p><h3>Your loop</h3><div class="trigger" id="wowLoop"></div><p class="muted" style="margin:15px">Break the loop at the first step.</p><button class="btn primary" id="wowBtn">Make the next step ridiculously small →</button></div></div></section>
+
+<section class="section" id="history" hidden><div class="container"><div class="head"><p class="eyebrow">History</p><h2>Every autopsy</h2></div><div class="controls"><input id="search" type="search" placeholder="Search by task…"><select id="filter"><option value="">All blockers</option></select><select id="sort"><option value="newest">Newest first</option><option value="oldest">Oldest first</option></select></div><div class="historyGrid" id="historyGrid"></div></div></section>
+</main>
+
+<footer class="footer"><div class="container footerRow"><div class="brand">◉ PROCRASTINATION<i> AUTOPSY</i><br><small>Understand the pattern. Change the pattern.</small></div><button class="btn small" style="color:var(--red)" id="clearBtn">Clear All Data</button></div></footer>
+
+<div class="overlay" id="overlay" hidden><div class="modal" role="dialog" aria-modal="true" aria-labelledby="stepTitle"><button class="close" id="close" aria-label="Close">✕</button><div class="progress"><i id="progress"></i></div><div class="modalBody" id="modalBody"></div></div></div>
+<div class="overlay" id="confirm" hidden><div class="modal" style="width:min(440px,100%);padding:30px"><h2>Clear all data?</h2><p class="muted" style="margin:8px 0 20px">This permanently removes every autopsy from this browser.</p><div class="actions"><button class="btn" id="cancel">Cancel</button><button class="btn" style="color:var(--red)" id="confirmDelete">Delete everything</button></div></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+"use strict";
+const reasons=[
+["difficult","😵","Too difficult","I didn't know how to approach it.",15],
+["boring","😐","Boring","My brain didn't find the task rewarding.",12],
+["fear","😨","Fear of failure","I was afraid I wouldn't do it well.",20],
+["unclear","🧩","Don't know where to start","The task felt too vague.",22],
+["phone","📱","Phone distraction","Something easier grabbed my attention.",14],
+["energy","💤","Low energy","I didn't have the mental energy.",10],
+["goal","🎯","Goal unclear","I wasn't sure why I needed to do it.",13],
+["perfect","✨","Perfectionism","I wanted to do it perfectly.",19],
+["overwhelmed","😬","Overwhelmed","The task felt too large.",18]
+];
+const R=Object.fromEntries(reasons.map(x=>[x[0],{key:x[0],icon:x[1],name:x[2],sub:x[3],weight:x[4]}]));
+const follow={
+fear:["What were you afraid might happen?",["I might do it badly","Someone might judge me","I might discover I'm not good enough","I might waste my time"]],
+unclear:["What part felt unclear?",["Too many steps","Didn't know the first step","Didn't understand the task","Didn't have enough information"]],
+phone:["What pulled you away?",["Social media","YouTube","Messages","Games","Random browsing"]],
+perfect:["What made it hard to begin imperfectly?",["I wanted it to look professional","I feared making mistakes","I kept changing the plan","I compared myself to others"]],
+overwhelmed:["What made the task feel too large?",["Too many parts","Deadline pressure","I didn't know what to prioritize","Too many other things"]]
+};
+const avoid=[["<15","< 15 min",7],["15-30","15–30 min",22],["30-60","30–60 min",45],["1-3h","1–3 hours",120],["3h+","3+ hours",210]];
+const distractions=["Scrolling social media","Watching YouTube","Gaming","Sleeping","Cleaning","Random browsing","Other"];
+const moves={
+unclear:["Don't try to finish the project.","Open your editor and define the first 5-minute action."],
+fear:["Don't aim to do it perfectly.","Write the worst possible first draft, on purpose."],
+overwhelmed:["Don't look at the whole task.","Pick the smallest visible piece and do only that."],
+perfect:["Don't wait for the right conditions.","Make a rough first attempt for 10 minutes."],
+difficult:["Don't understand everything first.","Find one small piece you already know how to do."],
+boring:["Don't force yourself through the whole thing.","Work for 10 minutes and pair it with a small reward."],
+phone:["Don't rely on willpower alone.","Put your phone in another room for the first 20 minutes."],
+energy:["Don't push at full intensity.","Do the smallest possible version of the task, then rest."],
+goal:["Don't wait until you feel motivated.","Write one sentence explaining why the task matters."]
+};
+const insight={
+unclear:"Your biggest blocker isn't laziness. It's <span class='accent'>task ambiguity</span>.",
+fear:"You don't seem to avoid difficult work. You seem to avoid <span class='accent'>the possibility of doing it badly</span>.",
+phone:"Your <span class='accent'>environment</span> may be competing with your intentions.",
+energy:"Your procrastination appears strongly connected to your <span class='accent'>energy levels</span>.",
+perfect:"You may be waiting for the <span class='accent'>perfect starting point</span>.",
+difficult:"Your biggest blocker isn't laziness. It's not knowing <span class='accent'>how to approach</span> the task.",
+overwhelmed:"Your biggest blocker isn't laziness. It's the <span class='accent'>size</span> of the task.",
+goal:"Your biggest blocker isn't laziness. It's not knowing <span class='accent'>why</span> the task matters.",
+boring:"Your biggest blocker isn't laziness. It's how <span class='accent'>rewarding</span> the task feels."
+};
+const emotion={difficult:"SELF-DOUBT",boring:"DISINTEREST",fear:"FEAR",unclear:"CONFUSION",phone:"RESTLESSNESS",energy:"FATIGUE",goal:"APATHY",perfect:"ANXIETY",overwhelmed:"OVERWHELM"};
+const KEY="procrastination-autopsy-v3";
+let entries=load();
+
+function load(){try{const x=JSON.parse(localStorage.getItem(KEY)||"[]");return Array.isArray(x)?x:[]}catch{return[]}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(entries))}catch{toast("Browser storage is unavailable.")}}
+const $=id=>document.getElementById(id);
+const esc=x=>String(x??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const make=(tag,cls,text)=>{const x=document.createElement(tag);if(cls)x.className=cls;if(text!==undefined)x.textContent=text;return x};
+function toast(s){const t=$("toast");t.textContent=s;t.classList.add("show");clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove("show"),2400)}
+function today(){return new Date().toISOString().slice(0,10)}
+function fmtDate(k){return new Date(k+"T00:00:00").toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"})}
+function fmtMin(n){n=Math.round(n);return n<60?n+"m":Math.floor(n/60)+"h"+(n%60?" "+n%60+"m":"")}
+function avg(list){return list.length?list.reduce((s,e)=>s+(avoid.find(x=>x[0]===e.avoidance)?.[2]||0),0)/list.length:0}
+function analyze(e){
+ const selected=(e.reasons||[]).map(k=>R[k]).filter(Boolean);if(!selected.length)return null;
+ const total=selected.reduce((s,r)=>s+r.weight,0);
+ const score=selected.map(r=>({key:r.key,name:r.name,pct:Math.round(r.weight/total*100)})).sort((a,b)=>b.pct-a.pct);
+ const a=avoid.find(x=>x[0]===e.avoidance)||avoid[2];
+ let energy=e.reasons.includes("energy")?30:68;energy=Math.max(15,Math.min(85,energy-Math.round(a[2]/12)));
+ return {primary:score[0],secondary:score[1],energy};
+}
+function dominant(){
+ const c={};let n=0;entries.forEach(e=>{const a=analyze(e);if(a){c[a.primary.key]=(c[a.primary.key]||0)+1;n++}});
+ return Object.keys(c).map(k=>({key:k,name:R[k].name,count:c[k],pct:Math.round(c[k]/n*100)})).sort((a,b)=>b.pct-a.pct)[0]||null
+}
+function render(){
+ const has = entries.length > 0;
+ $("empty").hidden = has;
+
+ // Core analytics unlock after the FIRST completed autopsy.
+ ["latest","dna","insight","history"].forEach(id => $(id).hidden = !has);
+
+ // Supporting analytics also work with one entry; deeper "wow" analysis waits for 5.
+ ["thirty","trigger","timeline","weekly","milestoneSection"].forEach(id => $(id).hidden = !has);
+ $("wow").hidden = entries.length < 5;
+
+ stats();
+ if(!has) return;
+
+ latest();
+ dna();
+
+ const d = dominant();
+ $("insightBox").innerHTML = d
+   ? insight[d.key]
+   : "Your first autopsy is logged. Keep investigating to reveal your pattern.";
+
+ thirty();
+ heat();
+ trigger();
+ timeline();
+ weekly();
+ milestones();
+
+ if(entries.length >= 5) wow();
+
+ history();
+}
+function stats(){
+ const d=dominant();$("stats").innerHTML="";
+ [["Today's autopsies",entries.filter(e=>e.date===today()).length],["Total investigated",entries.length],["Dominant pattern",d?d.name:"—"]].forEach(x=>{const s=make("div","stat");s.innerHTML=`<div class="value">${esc(x[1])}</div><div class="label">${x[0]}</div>`;$("stats").appendChild(s)})
+}
+function latest(){
+ const a=analyze(entries[entries.length-1]),m=moves[a.primary.key]||moves.unclear;
+ $("result").innerHTML=`<div class="resultTop"><div><div class="eyebrow">TODAY'S PRIMARY BLOCKER</div><div class="resultTitle">${esc(a.primary.name)}</div></div><div class="badge">Confidence: ${a.primary.pct}%</div></div><p class="narrative">${insight[a.primary.key].replace(/<[^>]+>/g,"")}</p>`;
+ [["Primary blocker",a.primary.pct,""],["Secondary blocker",a.secondary?.pct||0,""],["Energy",a.energy,"green"]].forEach(x=>{if(!x[1])return;$("result").innerHTML+=`<div class="bar"><div class="barLabel"><span>${x[0]}</span><span>${x[1]}%</span></div><div class="track"><div class="fill ${x[2]}" data-p="${x[1]}"></div></div></div>`});
+ $("result").innerHTML+=`<div class="move"><small>YOUR NEXT MOVE</small><div style="color:var(--muted);margin-top:5px">${esc(m[0])}</div><div class="do">${esc(m[1])}</div><button class="btn primary" id="smallStart">Start With 5 Minutes →</button></div>`;
+ $("smallStart").onclick=()=>toast("Small start logged. That's how it begins.");
+ requestAnimationFrame(()=>document.querySelectorAll(".fill").forEach(x=>x.style.width=x.dataset.p+"%"))
+}
+function aggregate(){
+ const counts = {};
+ let totalSelections = 0;
+ entries.forEach(e => (e.reasons || []).forEach(k => {
+   if(!R[k]) return;
+   counts[k] = (counts[k] || 0) + 1;
+   totalSelections++;
+ }));
+ if(!totalSelections) return [];
+ return Object.keys(counts).map(k => ({
+   key:k,
+   name:R[k].name,
+   pct:Math.round(counts[k] / totalSelections * 100),
+   count:counts[k]
+ })).sort((a,b) => b.count - a.count);
+}
+function dna(){
+ const list=aggregate().slice(0,5);
+ $("dnaBars").innerHTML="";
+
+ if(!list.length){
+   $("dnaBars").innerHTML="<p class='muted'>Complete your first autopsy to start building your DNA.</p>";
+   $("radial").innerHTML="<p class='muted'>No pattern data yet.</p>";
+   return;
+ }
+ list.forEach(r=>{$("dnaBars").innerHTML+=`<div class="dnaRow"><div class="dnaLabel"><span>${esc(r.name)}</span><span>${r.pct}%</span></div><div class="track"><div class="dnaFill" data-p="${r.pct}"></div></div></div>`});
+ requestAnimationFrame(()=>document.querySelectorAll(".dnaFill").forEach(x=>x.style.width=x.dataset.p+"%"));
+ const size=270,c=135,r=88,circ=2*Math.PI*r;let off=0;
+ $("radial").innerHTML=`<svg viewBox="0 0 270 270"><circle cx="${c}" cy="${c}" r="${r}" fill="none" stroke="#ffffff0d" stroke-width="20"></circle></svg>`;
+ list.forEach((x,i)=>{const s=document.createElementNS("http://www.w3.org/2000/svg","circle");s.setAttribute("cx",c);s.setAttribute("cy",c);s.setAttribute("r",r);s.setAttribute("fill","none");s.setAttribute("stroke",["#a78bfa","#c4b5fd","#f0abfc","#7c3aed","#94a3b8"][i]);s.setAttribute("stroke-width","20");s.setAttribute("stroke-dasharray",`${circ} ${circ}`);s.setAttribute("stroke-dashoffset",circ);s.setAttribute("transform",`rotate(-90 ${c} ${c})`);s.style.transition="1s var(--ease)";$("radial").querySelector("svg").appendChild(s);requestAnimationFrame(()=>s.setAttribute("stroke-dashoffset",circ-x.pct/100*circ));off+=x.pct});
+}
+function thirty(){
+ const list=entries.filter(e=>Date.now()-new Date(e.timestamp).getTime()<2592e6),p=new Set(list.flatMap(e=>e.reasons||[])).size,started=list.filter(e=>e.avoidance==="15-30"||e.avoidance==="<15").length;
+ const h=Math.floor(list.length/2),o=avg(list.slice(0,h)),n=avg(list.slice(h));let trend="—";if(o&&n)trend=(n<=o?"↓ ":"↑ ")+Math.round(Math.abs(n-o)/o*100)+"%";
+ $("thirtyStats").innerHTML=[["Autopsies",list.length],["Patterns identified",p],["Started within 30 min",list.length?Math.round(started/list.length*100)+"%":"0%"],["Avoidance trend",trend]].map(x=>`<div class="stat"><div class="value">${esc(x[1])}</div><div class="label">${x[0]}</div></div>`).join("")
+}
+function heat(){
+ const by={};entries.forEach(e=>(by[e.date]??=[]).push(e));$("heat").innerHTML="";
+ const start=new Date();start.setHours(0,0,0,0);start.setDate(start.getDate()-90);
+ for(let i=0;i<91;i++){const d=new Date(start);d.setDate(start.getDate()+i);const k=d.toISOString().slice(0,10),n=(by[k]||[]).length,c=make("div","cell");c.dataset.l=n>=3?3:n===2?2:n===1?1:0;c.title=`${fmtDate(k)} — ${n} autopsy`;$("heat").appendChild(c)}
+}
+function trigger(){
+ const d=dominant();$("triggerBox").innerHTML="";
+ ["IMPORTANT TASK",emotion[d.key]||"UNCERTAINTY","OVERTHINKING","AVOIDANCE","DISTRACTION","GUILT","MORE AVOIDANCE"].forEach((s,i)=>{$("triggerBox").appendChild(make("div","node"+(i===1?" em":i>=5?" danger":""),s));if(i<6)$("triggerBox").appendChild(make("div","arrow","↓"))})
+}
+function timeline(){
+ const list=entries.filter(e=>Date.now()-new Date(e.timestamp).getTime()<6048e5).slice(-7).reverse();$("timelineGrid").innerHTML="";
+ if(!list.length){$("timelineGrid").appendChild(make("div","card","No autopsies logged in the last 7 days."));return}
+ list.forEach(e=>{const a=analyze(e),c=make("div","history");c.innerHTML=`<div class="date">${fmtDate(e.date)}</div><div class="task">${esc(e.task)}</div><div class="meta">Primary blocker <b>${esc(a?.primary.name||"—")}</b><br>Avoidance <b>${esc(avoid.find(x=>x[0]===e.avoidance)?.[1]||"—")}</b></div>`;c.onclick=()=>{$("timelineDetail").hidden=false;$("timelineDetail").innerHTML=`<h3>${esc(e.task)}</h3><p class="muted">Primary blocker: ${esc(a?.primary.name||"—")}<br>Instead did: ${esc(e.distraction||"—")}<br>Follow-up: ${esc(Object.values(e.followups||{})[0]||"—")}</p>`;$("timelineDetail").scrollIntoView({behavior:"smooth"})};$("timelineGrid").appendChild(c)})
+}
+function weekly(){
+ const list=entries.filter(e=>Date.now()-new Date(e.timestamp).getTime()<6048e5),d=dominant();$("weeklyBox").innerHTML="<h2>Your Weekly Autopsy</h2>";
+ if(!list.length){$("weeklyBox").innerHTML+="<p class='muted'>No autopsies logged this week yet.</p>";return}
+ const u=list.filter(e=>(e.reasons||[]).some(k=>["unclear","goal","overwhelmed"].includes(k))).length,dist={};list.forEach(e=>{if(e.distraction)dist[e.distraction]=(dist[e.distraction]||0)+1});const top=Object.keys(dist).sort((a,b)=>dist[b]-dist[a])[0],m=moves[d.key]||moves.unclear;
+ $("weeklyBox").innerHTML+=`<p class="muted">You investigated <b>${list.length}</b> task${list.length===1?"":"s"} this week.</p><p class="muted"><b>${u}</b> were connected to uncertainty.</p>${top?`<p class="muted">Your most common escape was <b>${esc(top)}</b>.</p>`:""}<p class="muted">Average avoidance: <b>${fmtMin(avg(list))}</b>.</p><div class="move"><small>EXPERIMENT FOR NEXT WEEK</small><div class="do">${esc(m[1])}</div></div>`
+}
+function milestones(){
+ const d=dominant(),days=new Set(entries.map(e=>e.date)).size;const a=[true,!!d&&d.count>=2,days>=7,!!d&&d.pct>=40&&entries.length>=3],t=[["FIRST AUTOPSY","You started investigating."],["PATTERN SPOTTED","You found a recurring blocker."],["7 DAYS","You showed up across a week."],["SELF-AWARE","You identified your dominant pattern."]];
+ $("milestones").innerHTML=t.map((x,i)=>`<div class="mile ${a[i]?"on":""}"><div style="color:var(--a);font-size:20px">${a[i]?"◉":"○"}</div><b>${x[0]}</b><p>${x[1]}</p></div>`).join("")
+}
+function wow(){
+ if(entries.length<5)return;const d=dominant();$("wowLead").textContent="You don't procrastinate equally. You're most likely to delay tasks when "+(d.key==="unclear"?"they are ambiguous + important + personally meaningful.":"this blocker repeatedly gets in your way.");
+ $("wowLoop").innerHTML="";["IMPORTANT TASK",emotion[d.key]||"UNCERTAINTY","OVERTHINKING","AVOIDANCE","DISTRACTION","GUILT","MORE AVOIDANCE"].forEach((s,i)=>{$("wowLoop").appendChild(make("div","node"+(i===1?" em":i>=5?" danger":""),s));if(i<6)$("wowLoop").appendChild(make("div","arrow","↓"))})
+}
+function history(){
+ const q=$("search").value.toLowerCase().trim(),f=$("filter").value,s=$("sort").value;let list=entries.slice();if(q)list=list.filter(e=>e.task.toLowerCase().includes(q));if(f)list=list.filter(e=>e.reasons.includes(f));list.sort((a,b)=>s==="oldest"?new Date(a.timestamp)-new Date(b.timestamp):new Date(b.timestamp)-new Date(a.timestamp));
+ $("historyGrid").innerHTML="";if(!list.length){$("historyGrid").appendChild(make("div","card","No autopsies match your search."));return}
+ list.forEach(e=>{const a=analyze(e),c=make("div","history");c.innerHTML=`<div class="date">${fmtDate(e.date)}</div><div class="task">${esc(e.task)}</div><div class="meta">Primary blocker <b>${esc(a?.primary.name||"—")}</b><br>Avoidance <b>${esc(avoid.find(x=>x[0]===e.avoidance)?.[1]||"—")}</b></div>`;const b=make("button","delete","Delete");b.onclick=ev=>{ev.stopPropagation();entries=entries.filter(x=>x.id!==e.id);save();render();toast("Autopsy deleted.")};c.appendChild(b);$("historyGrid").appendChild(c)})
+}
+
+let state={},steps=[],idx=0;
+function reset(){state={task:"",avoidance:null,distraction:null,reasons:[],followups:{}}}
+function openFlow(){reset();steps=["intro","task","avoidance","distraction","reasons","analyzing","complete"];idx=0;$("overlay").hidden=false;document.body.style.overflow="hidden";draw()}
+function closeFlow(){$("overlay").hidden=true;document.body.style.overflow=""}
+function next(){if(steps[idx]==="reasons")steps=["intro","task","avoidance","distraction","reasons",...state.reasons.filter(k=>follow[k]).map(k=>"follow:"+k),"analyzing","complete"];idx=Math.min(idx+1,steps.length-1);draw()}
+function back(){idx=Math.max(0,idx-1);draw()}
+function acts(w,backable=true){const a=make("div","actions");if(backable){const b=make("button","back","← Back");b.onclick=back;a.appendChild(b)}else a.appendChild(document.createElement("span"));w.appendChild(a);return a}
+function draw(){
+ $("progress").style.width=Math.round(idx/(steps.length-1)*100)+"%";$("modalBody").innerHTML="";
+ const s=steps[idx];if(s==="intro")intro();else if(s==="task")task();else if(s==="avoidance")avoidStep();else if(s==="distraction")distStep();else if(s==="reasons")reasonStep();else if(s.startsWith("follow:"))followStep(s.slice(7));else if(s==="analyzing")analyzeStep();else complete()
+}
+function intro(){const w=make("div");w.innerHTML="<p class='eyebrow'>Let's investigate</p><h2 class='stepTitle'>Let's investigate what happened.</h2><p class='stepHint'>About 30 seconds. No judgment, just facts.</p>";const a=acts(w,false),b=make("button","btn primary","Begin →");b.onclick=next;a.appendChild(b);$("modalBody").appendChild(w);b.focus()}
+function task(){const w=make("div");w.innerHTML="<p class='eyebrow'>Step 1</p><h2 class='stepTitle'>What were you trying to start?</h2>";const i=make("input","stepInput");i.placeholder='Example: "Finish my machine learning project"';i.value=state.task;w.appendChild(i);w.appendChild(make("p","stepHint","Name the task in your own words."));const a=acts(w),b=make("button","btn primary","Continue →");b.disabled=!state.task.trim();i.oninput=()=>{state.task=i.value;b.disabled=!state.task.trim()};b.onclick=()=>state.task.trim()&&next();a.appendChild(b);$("modalBody").appendChild(w);i.focus()}
+function avoidStep(){const w=make("div");w.innerHTML="<p class='eyebrow'>Step 2</p><h2 class='stepTitle'>How long did you avoid starting?</h2>";const o=make("div","options");avoid.forEach(x=>{const b=make("button","option",x[1]);b.onclick=()=>{state.avoidance=x[0];next()};o.appendChild(b)});w.appendChild(o);acts(w);$("modalBody").appendChild(w)}
+function distStep(){const w=make("div");w.innerHTML="<p class='eyebrow'>Step 3</p><h2 class='stepTitle'>What did you end up doing instead?</h2>";const o=make("div","options");distractions.forEach(x=>{const b=make("button","option",x);b.onclick=()=>{state.distraction=x;next()};o.appendChild(b)});w.appendChild(o);acts(w);$("modalBody").appendChild(w)}
+function reasonStep(){const w=make("div");w.innerHTML="<p class='eyebrow'>The core question</p><h2 class='stepTitle'>Why didn't you start?</h2><p class='stepHint'>Select everything that applies.</p>";const g=make("div","reasonGrid");reasons.forEach(x=>{const b=make("button","reason"+(state.reasons.includes(x[0])?" selected":""));b.innerHTML=`<span>${x[1]}</span><b>${x[2]}</b><small>${esc(x[3])}</small>`;b.onclick=()=>{const p=state.reasons.indexOf(x[0]);p<0?state.reasons.push(x[0]):state.reasons.splice(p,1);b.classList.toggle("selected");go.disabled=!state.reasons.length};g.appendChild(b)});w.appendChild(g);const a=acts(w),go=make("button","btn primary","Continue →");go.disabled=!state.reasons.length;go.onclick=()=>state.reasons.length&&next();a.appendChild(go);$("modalBody").appendChild(w)}
+function followStep(k){const f=follow[k],w=make("div");w.innerHTML=`<p class='eyebrow'>${esc(R[k].name)}</p><h2 class='stepTitle'>${esc(f[0])}</h2>`;const o=make("div","options");f[1].forEach(x=>{const b=make("button","option",x);b.onclick=()=>{state.followups[k]=x;next()};o.appendChild(b)});w.appendChild(o);acts(w);$("modalBody").appendChild(w)}
+function analyzeStep(){const w=make("div","analyze");w.innerHTML="<p class='eyebrow'>Analyzing behavior…</p><div class='loading'><i></i></div><strong>0%</strong><p class='muted' style='margin-top:15px'>Identifying patterns…<br>Comparing previous entries…<br>Building behavioral profile…</p>";$("modalBody").appendChild(w);requestAnimationFrame(()=>w.querySelector("i").style.width="100%");let p=0;const timer=setInterval(()=>{p=Math.min(100,p+8);w.querySelector("strong").textContent=p+"%";if(p>=100)clearInterval(timer)},100);setTimeout(()=>{const d=new Date();entries.push({id:Date.now().toString(36),timestamp:d.toISOString(),date:d.toISOString().slice(0,10),task:state.task.trim(),avoidance:state.avoidance,distraction:state.distraction,reasons:[...state.reasons],followups:{...state.followups}});save();next()},1500)}
+function complete(){const w=make("div","complete");w.innerHTML="<h2>Autopsy Complete.</h2><p>We found something worth looking at.</p>";const b=make("button","btn primary","See what stopped you →");b.onclick=()=>{closeFlow();render();setTimeout(()=>$("latest").scrollIntoView({behavior:"smooth"}),80)};w.appendChild(b);$("modalBody").appendChild(w);b.focus()}
+
+$("heroBtn").onclick=openFlow;$("newBtn").onclick=openFlow;$("emptyBtn").onclick=openFlow;$("howBtn").onclick=()=>$("how").scrollIntoView({behavior:"smooth"});
+$("close").onclick=closeFlow;$("overlay").onclick=e=>e.target===$("overlay")&&closeFlow();
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeFlow();$("confirm").hidden=true}});
+$("search").oninput=history;$("filter").onchange=history;$("sort").onchange=history;
+reasons.forEach(x=>$("filter").add(new Option(x[2],x[0])));
+$("hamb").onclick=()=>{const open=$("mobile").hidden;$("mobile").hidden=!open;$("hamb").setAttribute("aria-expanded",open);document.body.style.overflow=open?"hidden":""};
+$("mobileNew").onclick=()=>{$("mobile").hidden=true;document.body.style.overflow="";openFlow()};$("mobile").querySelectorAll("a").forEach(a=>a.onclick=()=>{$("mobile").hidden=true;document.body.style.overflow=""});
+window.addEventListener("scroll",()=>{$("nav").classList.toggle("scrolled",scrollY>20);let cur=null;["dashboard","dna","thirty","weekly"].forEach(id=>{const x=$(id);if(!x.hidden){const r=x.getBoundingClientRect();if(r.top<=150&&r.bottom>150)cur=id}});document.querySelectorAll("[data-nav]").forEach(a=>a.classList.toggle("active",a.dataset.nav===cur))},{passive:true});
+$("clearBtn").onclick=()=>$("confirm").hidden=false;$("cancel").onclick=()=>$("confirm").hidden=true;$("confirmDelete").onclick=()=>{entries=[];save();$("confirm").hidden=true;render();toast("All data cleared.")};$("wowBtn").onclick=()=>toast("Now make the next step ridiculously small.");
+render();
+</script>
+</body>
+</html>
